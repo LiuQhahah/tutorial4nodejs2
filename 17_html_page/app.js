@@ -4,8 +4,8 @@ var server = http.createServer(function(req,res){
   //send a response header  to the request
   console.log(req.url);
   //由于res是一个writable Stream ,因此可以向res写入内容
-  res.writeHead(200,{'Content-Type':'text/plain'});
-  var myReadStream = fs.createReadStream(__dirname + '/readMe.txt','utf8');
+  res.writeHead(200,{'Content-Type':'text/html'});
+  var myReadStream = fs.createReadStream(__dirname + '/index.html','utf8');
   myReadStream.pipe(res);
 });
 

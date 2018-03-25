@@ -3,10 +3,14 @@ var fs = require('fs');
 var server = http.createServer(function(req,res){
   //send a response header  to the request
   console.log(req.url);
-  //由于res是一个writable Stream ,因此可以向res写入内容
-  res.writeHead(200,{'Content-Type':'text/plain'});
-  var myReadStream = fs.createReadStream(__dirname + '/readMe.txt','utf8');
-  myReadStream.pipe(res);
+  //更改Content-Type 为'application/json'
+  res.writeHead(200,{'Content-Type':'application/json'});
+  var myObj = {
+    name:'Ryu',
+    job:'Ninja',
+    age:29
+  };
+  res.end(JSON.stringify(myObj));
 });
 
 server.listen(3000,'127.0.0.1');
