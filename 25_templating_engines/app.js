@@ -1,6 +1,9 @@
 var express = require('express');
-
+var bodyParser = require('body-parser')
 var app = express();
+
+
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 //设置ejs为view引擎
 app.set('view engine','ejs');
@@ -14,8 +17,15 @@ app.get('/',function(req,res){
 
 
 app.get('/contact',function(req,res){
-  // console.log(req.query);
+   console.log("get: "+req.query);
   res.render('contact',{qs:req.query});
+});
+
+//post方法，和前端的'post'；‘contact’也和前端的'/contact'一一对应
+app.post('/contact',urlencodedParser,function(req,res){
+  //req从前端获取数据
+  console.log(req.body);
+  res.render('contact-success',{data:req.body});
 });
 
 app.get('/profile/:name', function(req,res){
