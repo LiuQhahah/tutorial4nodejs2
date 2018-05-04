@@ -1,6 +1,7 @@
-module.exprots = function(app) {
-  app.get('/todo',function(req,res){
+module.exprots = function(app){
 
+  app.get('/todo',function(req,res){
+    res.render('todo');
   });
 
   app.post('/todo',function(req,res){
